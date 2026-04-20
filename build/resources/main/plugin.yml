@@ -1,0 +1,14 @@
+name: ArctisChunkLoader
+version: '1.0'
+main: com.arctis.ArctisChunkLoader
+api-version: '1.21'
+description: A custom chunk loader plugin.
+commands:
+  chunkloader:
+    description: Opens the ChunkLoader GUI
+    aliases: [cl]
+permissions:
+  chunkloader.use:
+    default: true
+  chunkloader.admin:
+    default: op

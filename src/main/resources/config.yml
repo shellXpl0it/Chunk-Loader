@@ -1,0 +1,7 @@
+# Arctis Chunk Loader Configuration
+
+# How many chunks can a user with only 'chunkloader.use' permission keep loaded?
+user-chunk-limit: 5
+
+# Should admins (chunkloader.admin) receive a chat notification when any user creates or deletes a loaded chunk?
+admin-notifications: true
