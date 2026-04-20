@@ -69,15 +69,19 @@ public class GuiManager {
             gui.setItem(slot++, item);
         }
 
-        // Bottom Row: Pagination
+        // Bottom Row: Pagination & Info
         if (page > 0) {
             gui.setItem(45, createItem(Material.ARROW, ChatColor.AQUA + "Previous Page"));
         }
+        
+        int limit = plugin.getConfig().getInt("user-chunk-limit", 5);
+        int currentCount = plugin.getDataManager().getPlayerChunkCount(player.getUniqueId());
+        String limitDisplay = (limit == -1 || isAdmin) ? "Limitless" : currentCount + " / " + limit;
+        gui.setItem(49, createItem(Material.PAPER, ChatColor.GOLD + "Chunk Limit Info", "Loaded Chunks: " + ChatColor.WHITE + limitDisplay));
+        
         if (startIndex + itemsPerPage < chunksToShow.size()) {
             gui.setItem(53, createItem(Material.ARROW, ChatColor.AQUA + "Next Page"));
         }
-
-        // Removed the toggle enable/disable plugin button here entirely as requested.
 
         player.openInventory(gui);
     }
@@ -106,6 +110,13 @@ public class GuiManager {
             tpBtn.setItemMeta(tpMeta);
             gui.setItem(15, tpBtn);
         }
+
+        // Chunk Info
+        int limit = plugin.getConfig().getInt("user-chunk-limit", 5);
+        int currentCount = plugin.getDataManager().getPlayerChunkCount(player.getUniqueId());
+        String limitDisplay = (limit == -1 || isAdmin) ? "Limitless" : currentCount + " / " + limit;
+        gui.setItem(22, createItem(Material.PAPER, ChatColor.GOLD + "Chunk Limit Info", "Loaded Chunks: " + ChatColor.WHITE + limitDisplay));
+
 
         gui.setItem(26, createItem(Material.DARK_OAK_DOOR, ChatColor.GRAY + "Back"));
 

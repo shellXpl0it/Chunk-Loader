@@ -50,8 +50,8 @@ public class GuiListener implements Listener {
             Chunk chunk = player.getLocation().getChunk();
             
             if (!player.hasPermission("chunkloader.admin")) {
-                int limit = plugin.getConfig().getInt("user-chunk-limit");
-                if (plugin.getDataManager().getPlayerChunkCount(player.getUniqueId()) >= limit) {
+                int limit = plugin.getConfig().getInt("user-chunk-limit", 5);
+                if (limit != -1 && plugin.getDataManager().getPlayerChunkCount(player.getUniqueId()) >= limit) {
                     player.sendMessage(ArctisChunkLoader.PREFIX + ChatColor.RED + "You have reached your chunk loading limit of " + limit + ".");
                     player.closeInventory();
                     return;
